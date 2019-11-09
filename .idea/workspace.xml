@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8e89539-fe8f-4fe5-b3bf-67119f218b25" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/wykan.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wykan/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wykan/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../wekan-python-api-client/examples/wekan_notifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/../wekan-python-api-client/examples/wekan_notifier.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../wekan-python-api-client/src/wekanapi/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../wekan-python-api-client/src/wekanapi/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +24,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="gitignore" value="1" />
           <entry key="md" value="1" />
           <entry key="py" value="22" />
           <entry key="txt" value="1" />
@@ -39,17 +33,19 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="PLAIN_TEXT" value="2" />
           <entry key="Python" value="22" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="gitignore" value="36" />
           <entry key="py" value="2001" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+          <entry key="PLAIN_TEXT" value="36" />
           <entry key="Python" value="2001" />
         </counts>
       </usages-collector>
@@ -57,7 +53,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pykan.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="100">
@@ -69,14 +65,23 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wykan/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-28">
               <caret line="33" column="46" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
               <folding>
-                <marker date="1573340212184" expanded="true" signature="721:913" ph="..." />
-                <marker date="1573340212184" expanded="true" signature="1164:1770" ph="..." />
+                <marker date="1573340606958" expanded="true" signature="721:913" ph="..." />
+                <marker date="1573340606958" expanded="true" signature="1164:1770" ph="..." />
               </folding>
             </state>
           </provider>
@@ -89,8 +94,8 @@
               <caret line="24" selection-start-line="24" selection-end-line="24" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
-                <marker date="1573336145235" expanded="true" signature="56:57" ph="..." />
-                <marker date="1573336145235" expanded="true" signature="56:58" ph="..." />
+                <marker date="1573340606958" expanded="true" signature="56:57" ph="..." />
+                <marker date="1573340606958" expanded="true" signature="56:58" ph="..." />
               </folding>
             </state>
           </provider>
@@ -123,7 +128,7 @@
             <state relative-caret-position="170">
               <caret line="10" column="11" lean-forward="true" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
               <folding>
-                <marker date="1573339433397" expanded="true" signature="37:236" ph="..." />
+                <marker date="1573340606954" expanded="true" signature="37:236" ph="..." />
               </folding>
             </state>
           </provider>
@@ -159,7 +164,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../wekan-python-api-client" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -172,6 +177,7 @@
         <option value="$PROJECT_DIR$/../wekan-python-api-client/src/wekanapi/models.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/wykan/models.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -403,6 +409,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19391635" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -572,7 +579,7 @@
         <state relative-caret-position="170">
           <caret line="10" column="11" lean-forward="true" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
           <folding>
-            <marker date="1573339433397" expanded="true" signature="37:236" ph="..." />
+            <marker date="1573340606954" expanded="true" signature="37:236" ph="..." />
           </folding>
         </state>
       </provider>
@@ -583,8 +590,8 @@
           <caret line="24" selection-start-line="24" selection-end-line="24" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
-            <marker date="1573336145235" expanded="true" signature="56:57" ph="..." />
-            <marker date="1573336145235" expanded="true" signature="56:58" ph="..." />
+            <marker date="1573340606958" expanded="true" signature="56:57" ph="..." />
+            <marker date="1573340606958" expanded="true" signature="56:58" ph="..." />
           </folding>
         </state>
       </provider>
@@ -594,8 +601,8 @@
         <state relative-caret-position="-28">
           <caret line="33" column="46" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
           <folding>
-            <marker date="1573340212184" expanded="true" signature="721:913" ph="..." />
-            <marker date="1573340212184" expanded="true" signature="1164:1770" ph="..." />
+            <marker date="1573340606958" expanded="true" signature="721:913" ph="..." />
+            <marker date="1573340606958" expanded="true" signature="1164:1770" ph="..." />
           </folding>
         </state>
       </provider>
@@ -607,6 +614,13 @@
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
         </state>
       </provider>
     </entry>
