@@ -1,4 +1,5 @@
 from .board import Board
+from .colors import Colors
 
 
 class _WekanObject:
