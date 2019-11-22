@@ -1,0 +1,28 @@
+from enum import Enum
+
+
+class Colors(Enum):
+    GREEN = "green"
+    YELLOW = "yellow"
+    ORANGE = "orange"
+    RED = "red"
+    PURPLE = "purple"
+    BLUE = "blue"
+    SKY = "sky"
+    LIME = "lime"
+    PINK = "pink"
+    BLACK = "black"
+    SILVER = "silver"
+    PEACHPUFF = "peachpuff"
+    CRIMSON = "crimson"
+    PLUM = "plum"
+    DARKGREEN = "darkgreen"
+    SLATEBLUE = "slateblue"
+    MAGENTA = "magenta"
+    GOLD = "gold"
+    NAVY = "navy"
+    GRAY = "gray"
+    SADDLEBROWN = "saddlebrown"
+    PALETURQUOISE = "paleturquoise"
+    MISTYROSE = "mistyrose"
+    INDIGO = "indigo"
