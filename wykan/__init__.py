@@ -70,8 +70,8 @@ class Wykan:
                                         verify=Wykan.verify_tls)
 
         # Check if the HTTP request returned successfully.
-        if api_response.status_code != 200:
-            raise HTTPError(api_response)
+        if not api_response.ok:
+            raise HTTPError(api_response.content.decode('utf-8'))
 
         response_json = api_response.json()
 
@@ -80,6 +80,20 @@ class Wykan:
             raise WekanException(str(response_json))
 
         return response_json
+
+    def create_new_user(self, username: str, email: str, password: str) -> User:
+        """
+        Create a new user.
+        """
+
+        new_user_details = {
+            "username": username,
+            "email": email,
+            "password": password
+        }
+
+        new_user = self.post("/api/users", new_user_details)
+        return new_user
 
     def get_user_by_username(self, username) -> User:
         """
