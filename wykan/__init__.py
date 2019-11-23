@@ -80,6 +80,42 @@ class Wykan:
 
         return response_json
 
+    def create_board(self, title: str, owner_id: str, **kwargs) -> Board:
+        """
+        Create a new board
+        :param title: Name of the new board.
+        :param owner_id: ID of the owner.
+        """
+        new_board_details = {
+            "title": title,
+            "owner": owner_id,
+            "isAdmin": kwargs.get("is_admin"),
+            "isActive": kwargs.get("is_active"),
+            "isNoComments": kwargs.get("is_no_comments"),
+            "isCommentOnly": kwargs.get("is_comment_only"),
+            "permission": kwargs.get("permission"),
+            "color": kwargs.get("color")
+        }
+
+        new_board = self.post("/api/boards", new_board_details)
+        return self.get_board(new_board["_id"])
+
+    def get_board(self, id) -> Board:
+        """
+        Get a single board.
+        :param id: ID of the board.
+        """
+
+        return Board(self, id)
+
+    def get_public_boards(self) -> [Board]:
+        """
+        Return a list of all public boards.
+        """
+
+        public_boards = self.get("/api/boards")
+        return [self.get_board(board_id["_id"]) for board_id in public_boards]
+
     def delete_user_by_username(self, username: str):
         """
         Delete a single user by username.
