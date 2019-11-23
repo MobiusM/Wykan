@@ -108,6 +108,15 @@ class Board(_WekanObject):
         new_list = self._api.post(f"/api/boards/{self.id}/lists", new_list_details)
         return List(self._api, self.id, new_list["_id"])
 
+    def delete_list(self, list_id) -> str:
+        """
+        Delete a list from the board.
+        :param list_id: ID of the list to delete.
+        :return ID of the delete list.
+        """
+
+        return self._api.delete(f"/api/boards/{self.id}/lists/{list_id}")
+
 
 class BoardLabel:
     """
