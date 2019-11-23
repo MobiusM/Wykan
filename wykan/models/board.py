@@ -6,7 +6,7 @@ class Board(_WekanObject):
     Wekan Board object
     """
 
-    def __init__(self, api, board_data):
+    def __init__(self, a, board_data):
         super().__init__(api, board_data)
         self.title = self.data["title"]
 
