@@ -15,5 +15,7 @@ if __name__ == '__main__':
     by_username = wekan.get_user_by_username("levinson")
     print("got user by username")
 
-    new_user = wekan.create_new_user("bis-hanich-test2", "hanich-mail@school.notreall", "Aa123456")
+    deleted_user_id = wekan.delete_user_by_username("bis-hanich")
+    # new_user = wekan.create_new_user("bis-hanich-test2", "hanich-mail@school.notreall", "Aa123456")
+
     print("breakpoint")
