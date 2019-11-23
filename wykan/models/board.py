@@ -1,3 +1,4 @@
+from wykan.models.list import List
 from . import _WekanObject
 from .colors import Colors, BoardColors
 
@@ -77,6 +78,22 @@ class Board(_WekanObject):
             "isCommentOnly": is_comment_only
         }
         self._api.post(f"/api/boards/{self.id}/members/{user_id}/add", add_user_details)
+
+    def get_lists(self) -> [List]:
+        """
+        Get all the lists in this board.
+        """
+
+        board_lists = self._api.get(f"/api/boards/{self.id}/lists")
+        return [self.get_list(board_list.get("_id")) for board_list in board_lists]
+
+    def get_list(self, list_id) -> List:
+        """
+        Get a single list.
+        :param list_id: ID of the list.
+        """
+
+        return List(self._api, self.id, list_id)
 
 
 class BoardLabel:
