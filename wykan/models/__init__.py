@@ -4,10 +4,9 @@ class _WekanObject:
         _id: id of object
     """
 
-    def __init__(self, api, id: str, raw_object):
+    def __init__(self, api, id: str):
         self._api = api
         self._id = id
-        self._raw_object = raw_object
 
     @property
     def id(self) -> str:

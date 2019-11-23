@@ -5,26 +5,31 @@ user_email = namedtuple("user_email", "address verified")
 
 
 class User(_WekanObject):
-    def __init__(self, api, id: str, raw_user: dict, **kwargs):
-        super().__init__(api, id, raw_user)
+    """
+    A Wekan user.
+    """
 
-        self.username = raw_user.get("username")
-        self.emails = UserEmail(kwargs.get("address"), kwargs.get("verified"))
-        self.created_at = raw_user.get("createdAt")
-        self.modified_at = raw_user.get("modifiedAt")
-        # self.profile = UserProfile(raw_user)  # todo: is this the right appoach?
-        self.services = raw_user.get("services")
-        self.heartbeat = raw_user.get("heartbeat")
-        self.is_admin = raw_user.get("isAdmin")
-        self.created_though_api = raw_user.get("createdThroughApi")
-        self.login_disabled = raw_user.get("loginDisabled")
-        self.authentication_method = raw_user.get("authenticationMethod")
+    def __init__(self, api, id: str):
+        super().__init__(api, id)
+        user = self._api.get(f"/api/users/{self.id}")
 
-    def populate_user_data(self):
-        pass
+        self.username = user.get("username")
+        self.emails = [UserEmail(email.get("address"), email.get("verified")) for email in user.get("emails")]
+        self.created_at = user.get("createdAt")
+        self.modified_at = user.get("modifiedAt")
+        self.profile = UserProfile(user.get("profile"))
+        self.services = user.get("services")
+        self.heartbeat = user.get("heartbeat")
+        self.is_admin = user.get("isAdmin")
+        self.created_though_api = user.get("createdThroughApi")
+        self.login_disabled = user.get("loginDisabled")
+        self.authentication_method = user.get("authenticationMethod")
 
 
 class UserEmail:
+    """
+    A Wekan user's email details
+    """
 
     def __init__(self, address: str, verified: str):
         self.address = address
@@ -32,6 +37,27 @@ class UserEmail:
 
 
 class UserProfile:
+    """
+    A Wekan user's profile details.
+    """
 
-    def __init__(self, ):
-        pass
+    def __init__(self, profile: dict):
+        self.avatar_url = profile.get("avatarUrl")
+        self.email_buffer = profile.get("emailBuffer", [])
+        self.fullname = profile.get("fullname")
+        self.show_desktop_drag_handles = profile.get("showDesktopDragHandles")
+        self.hidden_system_messages = profile.get("hiddenSystemMessages")
+        self.hidden_minicard_label_text = profile.get("hiddenMinicardLabelText")
+        self.initials = profile.get("initials")
+        self.invited_boards = profile.get("invitedBoards", [])
+        self.language = profile.get("language")
+        self.notifications = profile.get("notifications", [])
+        self.show_cards_count_at = profile.get("showCardsCountAT")
+        self.starred_boards = profile.get("starredBoards", [])
+        self.icode = profile.get("icode")
+        self.board_view = profile.get("boardView")
+        self.list_sort_by = profile.get("listSortBy")
+        self.templates_board_id = profile.get("templatesBoardId")
+        self.card_templates_swimlane_id = profile.get("cardTemplatesSwimlaneId")
+        self.list_templates_swimlane_id = profile.get("listTemplatesSwimlaneId")
+        self.board_templates_swimlane_id = profile.get("boardTemplatesSwimlaneId")

@@ -19,11 +19,11 @@ class Wykan:
 
         self.wekan_url = wekan_url
 
-        api_login = self.post("/users/login",
-                              data={"username": username, "password": password},
-                              authed=False)
-        self.token = api_login["token"]
-        self.user = User(self, api_login["id"], api_login)
+        login_user = self.post("/users/login",
+                               data={"username": username, "password": password},
+                               authed=False)
+        self.token = login_user["token"]
+        self.user = User(self, login_user["id"])
 
     def get(self, url: str, **kwargs):
         return self._internal_api_call(url, "get", **kwargs)
@@ -39,7 +39,7 @@ class Wykan:
 
     def _internal_api_call(self, rest_url: str, method: str, data: dict = None, **kwargs):
         """
-        Does the actual request logic.
+        Issues the actual request to the Wekan server.
 
         :param rest_url: example: /users/login
         :param method: Type of REST method to send.
@@ -52,12 +52,15 @@ class Wykan:
 
         headers = dict()
 
+        # Some api requests do not require authorization.
         if kwargs.get("authed", True):
             headers["Authorization"] = f"Bearer {self.token}"
 
+        # Every POST or PUT method sends JSON, thus requiring this header.
         if method in ("post", "put"):
             headers["Content-type"] = "application/json"
 
+        # Except for the initial login request.
         if rest_url == "/users/login":
             headers["Content-type"] = "application/x-www-form-urlencoded"
 
@@ -66,34 +69,41 @@ class Wykan:
                                         headers=headers,
                                         verify=Wykan.verify_tls)
 
+        # Check if the HTTP request returned successfully.
         if api_response.status_code != 200:
             raise HTTPError(api_response)
 
         response_json = api_response.json()
 
+        # Check if the REST api request hasn't caused an error.
         if type(response_json) == dict and response_json.get("error"):
             raise WekanException(str(response_json))
 
-        return api_response.json()
+        return response_json
 
     def get_user_by_username(self, username) -> User:
         """
-        Retunn a `User` by a username.
+        Get a single user by username.
         :param username: Username to search by
         """
 
         users = self.get_all_users()
-        return users.get(username)
+        for user in users:
+            if user.username == username:
+                return user
 
     def get_user(self, id) -> User:
         """
-        Gets a single user.
+        Get a single user.
         :param id: ID of the user.
         """
 
-        raw_user = self.get(f"/api/users/{id}")
-        return User(self, id, raw_user)
+        return User(self, id)
 
-    def get_all_users(self):
+    def get_all_users(self) -> [User]:
+        """
+        Return a list of all the users.
+        """
+
         all_users = self.get("/api/users")
         return [self.get_user(user_id["_id"]) for user_id in all_users]
