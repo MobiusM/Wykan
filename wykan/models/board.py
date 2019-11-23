@@ -95,6 +95,19 @@ class Board(_WekanObject):
 
         return List(self._api, self.id, list_id)
 
+    def create_list(self, title: str) -> List:
+        """
+        Add a list to the board.
+        :param title: Title of the list to add.
+        """
+
+        new_list_details = {
+            "title": title
+        }
+
+        new_list = self._api.post(f"/api/boards/{self.id}/lists", new_list_details)
+        return List(self._api, self.id, new_list["_id"])
+
 
 class BoardLabel:
     """
