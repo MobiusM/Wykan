@@ -37,7 +37,7 @@ class Wykan:
     def put(self, url: str, data: dict, **kwargs):
         return self._internal_api_call(url, "put", data, **kwargs)
 
-    def _internal_api_call(self, rest_url: str, method: str, data: dict = None, **kwargs):
+    def _internal_api_call(self, rest_url: str, method: str, data: dict = None, **kwargs) -> dict:
         """
         Issues the actual request to the Wekan server.
 
@@ -51,23 +51,22 @@ class Wykan:
         request_url = f"{self.wekan_url}{rest_url}"
 
         headers = dict()
+        request_data = dict()
 
         # Some api requests do not require authorization.
         if kwargs.get("authed", True):
             headers["Authorization"] = f"Bearer {self.token}"
 
-        # Every POST or PUT method sends JSON, thus requiring this header.
-        if method in ("post", "put"):
-            headers["Content-type"] = "application/json"
-
         # Except for the initial login request.
         if rest_url == "/users/login":
             headers["Content-type"] = "application/x-www-form-urlencoded"
+            request_data["data"] = data
 
         api_response = requests.request(method, request_url,
-                                        data=data,
                                         headers=headers,
-                                        verify=Wykan.verify_tls)
+                                        json=data,
+                                        verify=Wykan.verify_tls,
+                                        **request_data)
 
         # Check if the HTTP request returned successfully.
         if not api_response.ok:
@@ -76,7 +75,7 @@ class Wykan:
         response_json = api_response.json()
 
         # Check if the REST api request hasn't caused an error.
-        if type(response_json) == dict and response_json.get("error"):
+        if isinstance(response_json, dict) and "error" in response_json:
             raise WekanException(str(response_json))
 
         return response_json
@@ -93,7 +92,7 @@ class Wykan:
         }
 
         new_user = self.post("/api/users", new_user_details)
-        return new_user
+        return self.get_user(new_user["_id"])
 
     def get_user_by_username(self, username) -> User:
         """
