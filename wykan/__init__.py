@@ -72,6 +72,11 @@ class Wykan:
         if not api_response.ok:
             raise HTTPError(api_response.content.decode('utf-8'))
 
+        response_json = dict()
+        # Response might be valid, but return not content.
+        if not api_response.content:
+            return response_json
+
         response_json = api_response.json()
 
         # Check if the REST api request hasn't caused an error.
@@ -80,20 +85,36 @@ class Wykan:
 
         return response_json
 
+    def get_user_boards(self, user_id: str) -> [Board]:
+        """
+        Get all the boards attached to a user.
+        :param user_id: ID of the user.
+        """
+
+        user_boards = self.get(f"/api/users/{user_id}/boards")
+        return [self.get_board(user_board["_id"]) for user_board in user_boards]
+
     def create_board(self, title: str, owner_id: str, **kwargs) -> Board:
         """
         Create a new board
         :param title: Name of the new board.
         :param owner_id: ID of the owner.
+        :param is_admin: (optional) Is the owner an admin of the board.
+        :param is_active: (optional) Is the board active.
+        :param is_no_comments: (optional) Disable comments.
+        :param is_comment_only: (optional) Enable comments only.
+        :param permission: (optional) "private" board. Set to "public" for a public one.
+        :param color: (optional) One of the allowed colors in :class:`BoardColors`
         """
+
         new_board_details = {
             "title": title,
             "owner": owner_id,
-            "isAdmin": kwargs.get("is_admin"),
-            "isActive": kwargs.get("is_active"),
-            "isNoComments": kwargs.get("is_no_comments"),
-            "isCommentOnly": kwargs.get("is_comment_only"),
-            "permission": kwargs.get("permission"),
+            "isAdmin": kwargs.get("is_admin", True),
+            "isActive": kwargs.get("is_active", True),
+            "isNoComments": kwargs.get("is_no_comments", False),
+            "isCommentOnly": kwargs.get("is_comment_only", False),
+            "permission": kwargs.get("permission", "private"),
             "color": kwargs.get("color")
         }
 
