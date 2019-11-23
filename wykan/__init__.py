@@ -99,7 +99,7 @@ class Wykan:
         Delete a board.
         :param board_id: ID of the board to delete.
         """
-        
+
         self.delete(f"/api/boards/{board_id}")
 
     def create_board(self, title: str, owner_id: str, **kwargs) -> Board:
