@@ -94,7 +94,12 @@ class Wykan:
         user_boards = self.get(f"/api/users/{user_id}/boards")
         return [self.get_board(user_board["_id"]) for user_board in user_boards]
 
-    def delete_board(self, board_id):
+    def delete_board(self, board_id: str):
+        """
+        Delete a board.
+        :param board_id: ID of the board to delete.
+        """
+        
         self.delete(f"/api/boards/{board_id}")
 
     def create_board(self, title: str, owner_id: str, **kwargs) -> Board:
