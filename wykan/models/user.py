@@ -1,7 +1,4 @@
 from . import _WekanObject
-from collections import namedtuple
-
-user_email = namedtuple("user_email", "address verified")
 
 
 class User(_WekanObject):
