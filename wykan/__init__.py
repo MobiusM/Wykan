@@ -80,6 +80,31 @@ class Wykan:
 
         return response_json
 
+    def delete_user_by_username(self, username: str):
+        """
+        Delete a single user by username.
+        USE WITH CAUTION. SEE: https://github.com/wekan/wekan/issues/1289
+        :param username: Username of the user to delete.
+        :return: id of the deleted user, None if the user doesn't exist.
+        """
+
+        user = self.get_user_by_username(username)
+        if user is None:
+            return
+
+        return self.delete_user(user.id)
+
+    def delete_user(self, id: str) -> str:
+        """
+        Delete a user.
+        USE WITH CAUTION. SEE: https://github.com/wekan/wekan/issues/1289
+        :param id: id of the user to delete
+        :return: id of the deleted user.
+        """
+
+        deleted_user = self.delete(f"/api/users/{id}")
+        return deleted_user["_id"]
+
     def create_new_user(self, username: str, email: str, password: str) -> User:
         """
         Create a new user.
