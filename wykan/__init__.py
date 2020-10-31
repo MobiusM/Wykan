@@ -9,15 +9,15 @@ from .models.user import User
 class Wykan:
     verify_tls = True  # Set to False before initialization to ignore TLS validity.
 
-    def __init__(self, wekan_url: str, username: str, password: str):
+    def __init__(self, url: str, username: str, password: str):
         """
         Initialize a connection to a Wekan server.
         This object logs on to the Wekan server and lets you control it using REST API.
 
-        :param wekan_url: Base url to the Wekan server. Example: https://mywekan.com/
+        :param url: Base url to the Wekan server. Example: https://mywekan.com/
         """
 
-        self.wekan_url = wekan_url
+        self.wekan_url = url
 
         login_user = self.post("/users/login",
                                data={"username": username, "password": password},
